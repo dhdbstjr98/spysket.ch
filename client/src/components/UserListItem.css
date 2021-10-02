@@ -1,0 +1,13 @@
+.user-list li.user-list-item {
+  background-color: var(--primary);
+  color: #fff;
+}
+
+.user-list li.user-list-item.ready {
+  border: 4px solid var(--highlight);
+  margin: -4px -4px 8px -4px;
+}
+
+.user-list li.user-list-item.ready:last-child {
+  margin-bottom: -4px;
+}

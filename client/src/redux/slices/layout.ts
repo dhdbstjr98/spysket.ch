@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { setGame } from './game';
+import { clearGame, setGame } from './game';
 
 interface LayoutState {
   size: {
@@ -7,6 +7,7 @@ interface LayoutState {
     height: number;
   };
   page: 'lobby' | 'room' | 'game';
+  showContent: boolean;
 }
 
 const initialState: LayoutState = {
@@ -15,6 +16,7 @@ const initialState: LayoutState = {
     height: 337,
   },
   page: 'lobby',
+  showContent: true,
 };
 
 const layoutSlice = createSlice({
@@ -25,9 +27,18 @@ const layoutSlice = createSlice({
     builder.addCase(setGame, (state) => {
       state.size = {
         width: 500,
-        height: 500,
+        height: 524,
       };
       state.page = 'room';
+      state.showContent = true;
+    });
+    builder.addCase(clearGame, (state) => {
+      state.size = {
+        width: 300,
+        height: 337,
+      };
+      state.page = 'lobby';
+      state.showContent = true;
     });
   },
 });

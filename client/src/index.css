@@ -39,4 +39,5 @@ body {
     0 5px 5px -3px rgb(0 0 0 / 20%);
   transition: all 0.5s;
   box-sizing: border-box;
+  overflow: hidden;
 }

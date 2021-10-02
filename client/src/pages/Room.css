@@ -1,0 +1,16 @@
+.game h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.game h2 .room-name {
+  display: inline-block;
+  margin-right: 10px;
+  color: var(--primary);
+}
+
+.game h2 .count {
+  display: inline-block;
+  color: var(--highlight);
+  font-weight: normal;
+}
