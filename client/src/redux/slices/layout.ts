@@ -12,7 +12,7 @@ interface LayoutState {
 const initialState: LayoutState = {
   size: {
     width: 300,
-    height: 300,
+    height: 337,
   },
   page: 'lobby',
 };

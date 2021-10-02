@@ -1,29 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
-import { RootState, useAppDispatch } from './redux/store';
-import { setGame } from './redux/slices/game';
+import { RootState } from './redux/store';
 import Lobby from './pages/Lobby';
 import Game from './pages/Game';
 import Room from './pages/Room';
 
 const App: React.FC = () => {
-  const dispatch = useAppDispatch();
   const {
     size: { width, height },
     page,
   } = useSelector((state: RootState) => state.layout);
-
-  useEffect(() => {
-    setTimeout(() => {
-      dispatch(
-        setGame({
-          name: 'a',
-          id: 'b',
-          room: 'c',
-        }),
-      );
-    }, 3000);
-  });
 
   let Page;
 
