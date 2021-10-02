@@ -1,0 +1,32 @@
+.text-field {
+  display: block;
+  margin-bottom: 25px;
+}
+
+.text-field:last-child {
+  margin-bottom: 0;
+}
+
+.text-field > input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 6px 8px;
+  font-size: 24px;
+  font-weight: bold;
+  border: 2px solid var(--secondary);
+  background-color: #fff;
+  color: var(--secondary);
+  border-radius: 8px;
+  outline: none;
+}
+
+.text-field > .label {
+  color: var(--secondary);
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.text-field > .label.required:before {
+  display: inline;
+  content: '* ';
+}
