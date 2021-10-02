@@ -1,0 +1,36 @@
+.button {
+  padding: 12px 24px;
+  font-size: 16px;
+  border: 0;
+  border-radius: 8px;
+  color: #fff;
+  box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%),
+    0 1px 5px 0 rgb(0 0 0 / 20%);
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  margin-bottom: 15px;
+  transition: all 0.2s;
+}
+
+.button:last-child {
+  margin-bottom: 0;
+}
+
+.button.primary {
+  background-color: var(--primary);
+}
+
+.button.secondary {
+  background-color: var(--secondary);
+}
+
+.button.highlight {
+  background-color: var(--highlight);
+}
+
+.button:disabled {
+  background-color: var(--disabled);
+  color: var(--secondary);
+  cursor: default;
+}
