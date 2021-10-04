@@ -20,6 +20,7 @@ const Lobby: React.FC = () => {
           { name: '홍길동', ready: true },
           { name: '테스트', ready: false },
         ],
+        status: 'waiting',
       }),
     );
   };

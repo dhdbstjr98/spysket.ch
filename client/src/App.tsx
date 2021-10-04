@@ -1,9 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { RootState, useAppDispatch } from './redux/store';
+import { RootState } from './redux/store';
 import Lobby from './pages/Lobby';
 import Game from './pages/Game';
 import Room from './pages/Room';
+import Loading from './pages/Loading';
 
 const App: React.FC = () => {
   const {
@@ -23,6 +24,9 @@ const App: React.FC = () => {
       break;
     case 'game':
       Page = Game;
+      break;
+    case 'loading':
+      Page = Loading;
       break;
     default:
       throw new Error('존재하지 않는 페이지');

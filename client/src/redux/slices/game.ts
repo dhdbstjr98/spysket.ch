@@ -9,6 +9,7 @@ interface GameState {
   room: string;
   name: string;
   users: User[];
+  status: 'waiting' | 'loading';
 }
 
 const gameSlice = createSlice({
@@ -37,10 +38,13 @@ const gameSlice = createSlice({
         if (!found) state.users.push(action.payload);
       }
     },
+    loadGame: (state) => {
+      if (state) state.status = 'loading';
+    },
   },
 });
 
 const { actions, reducer } = gameSlice;
 
-export const { setGame, clearGame, setUser } = actions;
+export const { setGame, clearGame, setUser, loadGame } = actions;
 export default reducer;

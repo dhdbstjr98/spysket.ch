@@ -5,7 +5,7 @@ import UserList from '../components/UserList';
 
 import './Room.css';
 import Button from '../components/Button';
-import { clearGame, setUser } from '../redux/slices/game';
+import { clearGame, loadGame } from '../redux/slices/game';
 
 const Game: React.FC = () => {
   const game = useSelector((state: RootState) => state.game);
@@ -19,7 +19,7 @@ const Game: React.FC = () => {
     (state: RootState) => state.game?.users[0].ready,
   ) as boolean;
   const handleReady = () => {
-    dispatch(setUser({ name: '오윤석', ready: !isDummyReady }));
+    dispatch(loadGame());
   };
 
   // typescript null escape
