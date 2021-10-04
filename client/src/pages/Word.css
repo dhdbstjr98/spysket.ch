@@ -1,0 +1,8 @@
+.word p {
+  color: var(--primary);
+  font-size: 24px;
+}
+
+.word p strong {
+  font-weight: bold;
+}

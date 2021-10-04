@@ -1,0 +1,10 @@
+.vote {
+  margin: 0;
+  margin-bottom: 20px;
+  padding: 0;
+  list-style: none;
+}
+
+.vote:last-child {
+  margin-bottom: 0;
+}

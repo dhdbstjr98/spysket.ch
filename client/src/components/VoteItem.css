@@ -1,0 +1,28 @@
+.vote-item {
+  padding: 12px;
+  margin-bottom: 10px;
+  border: 1px solid var(--secondary);
+  border-radius: 8px;
+  color: var(--secondary);
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.vote:not(.disabled) .vote-item:hover,
+.vote.disabled .vote-item.active {
+  border: 1px solid var(--secondary);
+  background-color: var(--secondary);
+  color: #fff;
+}
+
+.vote-item:last-child {
+  margin-bottom: 0;
+}
+
+.vote.disabled .vote-item {
+  border: 1px solid var(--disabled);
+  color: var(--secondary);
+  cursor: default;
+}

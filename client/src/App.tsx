@@ -5,6 +5,7 @@ import Lobby from './pages/Lobby';
 import Game from './pages/Game';
 import Room from './pages/Room';
 import Loading from './pages/Loading';
+import Word from './pages/Word';
 
 const App: React.FC = () => {
   const {
@@ -27,6 +28,9 @@ const App: React.FC = () => {
       break;
     case 'loading':
       Page = Loading;
+      break;
+    case 'word':
+      Page = Word;
       break;
     default:
       throw new Error('존재하지 않는 페이지');
