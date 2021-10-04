@@ -15,9 +15,6 @@ const Game: React.FC = () => {
     dispatch(clearGame());
   };
 
-  const isDummyReady = useSelector(
-    (state: RootState) => state.game?.users[0].ready,
-  ) as boolean;
   const handleReady = () => {
     dispatch(loadGame());
   };
