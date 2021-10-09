@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import './Loading.css';
+import './SpyLoading.css';
 import ProgressBar from '../components/share/ProgressBar';
 import { useAppDispatch } from '../redux/store';
 import { setWords } from '../redux/slices/game';

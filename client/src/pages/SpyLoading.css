@@ -1,0 +1,23 @@
+.loading {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  color: var(--primary);
+  position: relative;
+  padding-top: 30px;
+  box-sizing: border-box;
+}
+
+.loading strong {
+  font-weight: bold;
+  color: var(--secondary);
+}
+
+.loading .progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+}

@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import './Word.css';
 import ProgressBar from '../components/share/ProgressBar';
 import Vote from '../components/word/Vote';
 import { RootState, useAppDispatch } from '../redux/store';
-import { setWordCount } from '../redux/slices/game';
+import { setWordCount, setWord } from '../redux/slices/game';
 
 const Game: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -14,6 +14,12 @@ const Game: React.FC = () => {
     dispatch(setWordCount({ name, count: 3 }));
   };
 
+  useEffect(() => {
+    setTimeout(() => {
+      dispatch(setWord('경희대'));
+    }, 10000);
+  }, []);
+
   const isSpy = useSelector((state: RootState) => state.game?.isSpy);
   const words = useSelector((state: RootState) => state.game?.words);
 
@@ -22,7 +28,7 @@ const Game: React.FC = () => {
 
   return (
     <div className="word">
-      <ProgressBar time={15} />
+      <ProgressBar time={10} />
       {isSpy ? (
         <p>
           당신은 <strong>스파이</strong>입니다.

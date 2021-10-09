@@ -4,7 +4,8 @@ import { RootState } from './redux/store';
 import Lobby from './pages/Lobby';
 import Game from './pages/Game';
 import Room from './pages/Room';
-import Loading from './pages/Loading';
+import SpyLoading from './pages/SpyLoading';
+import GameLoading from './pages/GameLoading';
 import Word from './pages/Word';
 
 const App: React.FC = () => {
@@ -26,11 +27,14 @@ const App: React.FC = () => {
     case 'game':
       Page = Game;
       break;
-    case 'loading':
-      Page = Loading;
+    case 'spy-loading':
+      Page = SpyLoading;
       break;
     case 'word':
       Page = Word;
+      break;
+    case 'game-loading':
+      Page = GameLoading;
       break;
     default:
       throw new Error('존재하지 않는 페이지');

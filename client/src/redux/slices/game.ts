@@ -70,13 +70,14 @@ const gameSlice = createSlice({
         );
       }
     },
-    startGame: (
-      state,
-      action: PayloadAction<{ name: string; users: User[] }>,
-    ) => {
+    setWord: (state, action: PayloadAction<string | undefined>) => {
       if (state) {
-        state.word = action.payload.name;
-        state.users = action.payload.users;
+        state.word = action.payload;
+      }
+    },
+    setUsers: (state, action: PayloadAction<User[]>) => {
+      if (state) {
+        state.users = action.payload;
       }
     },
   },
@@ -91,6 +92,7 @@ export const {
   loadGame,
   setWords,
   setWordCount,
-  startGame,
+  setWord,
+  setUsers,
 } = actions;
 export default reducer;
