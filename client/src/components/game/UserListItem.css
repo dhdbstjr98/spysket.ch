@@ -1,0 +1,52 @@
+.game .user-list .user-list-item {
+  width: 220px;
+  height: 18px;
+  padding: 12px 10px;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  border: 1px solid var(--disabled);
+  box-sizing: content-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 2px 0 rgb(0 0 0 / 4%), 0 3px 1px -2px rgb(0 0 0 / 2%),
+    0 1px 5px 0 rgb(0 0 0 / 20%);
+}
+
+.game .user-list .user-list-item.active {
+  border: 1px solid var(--highlight);
+  box-shadow: 0 2px 2px 0 rgb(239 202 76 / 24%),
+    0 3px 1px -2px rgb(239 202 76 / 22%), 0 1px 5px 0 rgb(239 202 76 / 40%);
+}
+
+.game .user-list .user-list-item:last-child {
+  margin-bottom: 0;
+}
+
+.game .user-list .user-list-item .name {
+  font-weight: bold;
+}
+
+.game .user-list .user-list-item.turn-0 .name {
+  color: var(--turn-0);
+}
+
+.game .user-list .user-list-item.turn-1 .name {
+  color: var(--turn-1);
+}
+
+.game .user-list .user-list-item.turn-2 .name {
+  color: var(--turn-2);
+}
+
+.game .user-list .user-list-item.turn-3 .name {
+  color: var(--turn-3);
+}
+
+.game .user-list .user-list-item.turn-4 .name {
+  color: var(--turn-4);
+}
+
+.game .user-list .user-list-item .point {
+  color: var(--secondary);
+}

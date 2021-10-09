@@ -3,19 +3,24 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 export interface User {
   name: string;
   ready: boolean;
+  point?: number;
 }
+
+export type Turn = 0 | 1 | 2 | 3 | 4;
+
 interface GameState {
   id: string;
   room: string;
   name: string;
   users: User[];
-  status: 'waiting' | 'loading';
+  status: 'waiting' | 'loading' | 'drawing';
   words?: {
     name: string;
     count: number;
   }[];
   word?: string;
   isSpy?: boolean;
+  turn?: Turn;
 }
 
 const gameSlice = createSlice({
@@ -78,6 +83,12 @@ const gameSlice = createSlice({
     setUsers: (state, action: PayloadAction<User[]>) => {
       if (state) {
         state.users = action.payload;
+        state.turn = 0;
+      }
+    },
+    setTurn: (state, action: PayloadAction<Turn>) => {
+      if (state) {
+        state.turn = action.payload;
       }
     },
   },
@@ -94,5 +105,6 @@ export const {
   setWordCount,
   setWord,
   setUsers,
+  setTurn,
 } = actions;
 export default reducer;

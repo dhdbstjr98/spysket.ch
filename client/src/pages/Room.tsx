@@ -24,7 +24,7 @@ const Game: React.FC = () => {
   const { room, users } = game;
 
   return (
-    <div className="game">
+    <div className="room">
       <h2>
         <span className="room-name">{room}</span>
         <span className="count">({users.length} / 5)</span>

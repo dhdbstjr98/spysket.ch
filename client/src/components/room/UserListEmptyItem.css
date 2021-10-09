@@ -1,4 +1,4 @@
-.user-list li.user-list-empty-item {
+.room .user-list li.user-list-empty-item {
   background-color: var(--disabled);
   color: var(--secondary);
 }

@@ -7,6 +7,7 @@ import Room from './pages/Room';
 import SpyLoading from './pages/SpyLoading';
 import GameLoading from './pages/GameLoading';
 import Word from './pages/Word';
+import { colors } from './components/game/Canvas';
 
 const App: React.FC = () => {
   const {
@@ -39,8 +40,17 @@ const App: React.FC = () => {
     default:
       throw new Error('존재하지 않는 페이지');
   }
+
+  const colorStyle = colors.reduce(
+    (acc, color, turn) => ({
+      ...acc,
+      [`--turn-${turn}`]: color,
+    }),
+    {},
+  );
+
   return (
-    <div className="container">
+    <div className="container" style={colorStyle}>
       <div className="main-box" style={{ width, height }}>
         {showContent ? <Page /> : ''}
       </div>

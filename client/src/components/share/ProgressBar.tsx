@@ -3,9 +3,11 @@ import './ProgressBar.css';
 
 interface Props {
   time: number;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  uniqueKey?: any;
 }
 
-const ProgressBar: React.FC<Props> = ({ time }: Props) => {
+const ProgressBar: React.FC<Props> = ({ time, uniqueKey }: Props) => {
   const progressBar = useRef<HTMLDivElement>(null);
 
   // todo : props인 time이 변할때마다 타이머 재설정을 하기 위해서
@@ -21,7 +23,7 @@ const ProgressBar: React.FC<Props> = ({ time }: Props) => {
         }
       }, 100);
     }
-  }, [time]);
+  }, [time, uniqueKey]);
 
   return (
     <div className="progress-bar">
