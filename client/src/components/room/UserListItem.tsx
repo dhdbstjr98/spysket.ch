@@ -1,6 +1,6 @@
 import React from 'react';
 import './UserListItem.css';
-import { User } from '../redux/slices/game';
+import { User } from '../../redux/slices/game';
 
 type Props = User;
 

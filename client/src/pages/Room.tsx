@@ -1,10 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from '../redux/store';
-import UserList from '../components/UserList';
-
+import UserList from '../components/room/UserList';
 import './Room.css';
-import Button from '../components/Button';
+import Button from '../components/share/Button';
 import { clearGame, loadGame } from '../redux/slices/game';
 
 const Game: React.FC = () => {

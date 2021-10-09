@@ -2,7 +2,7 @@ import React from 'react';
 import './UserList.css';
 import UserListItem from './UserListItem';
 import UserListEmptyItem from './UserListEmptyItem';
-import { User } from '../redux/slices/game';
+import { User } from '../../redux/slices/game';
 
 interface Props {
   users: User[];

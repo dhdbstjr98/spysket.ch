@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import './Word.css';
-import ProgressBar from '../components/ProgressBar';
-import Vote from '../components/Vote';
+import ProgressBar from '../components/share/ProgressBar';
+import Vote from '../components/word/Vote';
 import { RootState, useAppDispatch } from '../redux/store';
 import { setWordCount } from '../redux/slices/game';
 

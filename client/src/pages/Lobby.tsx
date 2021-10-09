@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import TextField from '../components/TextField';
-import Button from '../components/Button';
+import TextField from '../components/share/TextField';
+import Button from '../components/share/Button';
 import { useAppDispatch } from '../redux/store';
 import { setGame } from '../redux/slices/game';
 
