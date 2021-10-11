@@ -3,7 +3,7 @@ import { FabricJSCanvas, useFabricJSEditor } from 'fabricjs-react';
 import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from '../../redux/store';
 import './Canvas.css';
-import { setTurn, Turn } from '../../redux/slices/game';
+import { setStatus, setTurn, Turn } from '../../redux/slices/game';
 
 export const colors = ['#f44336', '#689f38', '#a5d6a7', '#2196f3', '#673ab7'];
 
@@ -17,8 +17,8 @@ const Canvas: React.FC = () => {
   if (!game || game.turn === undefined || game.isSpy === undefined)
     return <></>;
 
-  const { name, users, turn } = game;
-  const isMyTurn = users[turn].name === name;
+  const { name, users, turn, status } = game;
+  const isMyTurn = status === 'drawing' && users[turn].name === name;
 
   useEffect(() => {
     if (editor) {
@@ -41,6 +41,10 @@ const Canvas: React.FC = () => {
     if (turn < 4) {
       setTimeout(() => {
         dispatch(setTurn((turn + 1) as Turn));
+      }, 20000);
+    } else {
+      setTimeout(() => {
+        dispatch(setStatus('voting'));
       }, 20000);
     }
   }, [turn]);

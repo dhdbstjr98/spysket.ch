@@ -4,16 +4,19 @@ export interface User {
   name: string;
   ready: boolean;
   point?: number;
+  votedCount?: number;
 }
 
 export type Turn = 0 | 1 | 2 | 3 | 4;
+
+export type Status = 'waiting' | 'loading' | 'drawing' | 'voting';
 
 interface GameState {
   id: string;
   room: string;
   name: string;
   users: User[];
-  status: 'waiting' | 'loading' | 'drawing';
+  status: Status;
   words?: {
     name: string;
     count: number;
@@ -84,11 +87,32 @@ const gameSlice = createSlice({
       if (state) {
         state.users = action.payload;
         state.turn = 0;
+        state.status = 'drawing';
       }
     },
     setTurn: (state, action: PayloadAction<Turn>) => {
       if (state) {
         state.turn = action.payload;
+      }
+    },
+    setStatus: (state, action: PayloadAction<Status>) => {
+      if (state) {
+        if (action.payload === 'voting') {
+          state.users = state.users.map((user) => ({ ...user, votedCount: 0 }));
+        }
+        state.status = action.payload;
+      }
+    },
+    setVotedCount: (
+      state,
+      action: PayloadAction<{ name: string; votedCount: number }>,
+    ) => {
+      if (state) {
+        state.users = state.users.map((user) =>
+          user.name === action.payload.name
+            ? { ...user, votedCount: action.payload.votedCount }
+            : user,
+        );
       }
     },
   },
@@ -106,5 +130,7 @@ export const {
   setWord,
   setUsers,
   setTurn,
+  setStatus,
+  setVotedCount,
 } = actions;
 export default reducer;

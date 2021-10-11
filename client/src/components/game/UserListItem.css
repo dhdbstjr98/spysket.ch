@@ -47,6 +47,19 @@
   color: var(--turn-4);
 }
 
-.game .user-list .user-list-item .point {
+.game .user-list .user-list-item .point,
+.game .user-list .user-list-item .voted-count {
   color: var(--secondary);
+}
+
+.game .user-list.voting:not(.voted) .user-list-item {
+  cursor: pointer;
+}
+
+.game .user-list.voting:not(.voted) .user-list-item:hover {
+  background-color: var(--disabled);
+}
+
+.game .user-list.voted .user-list-item:not(.active) {
+  opacity: 0.6;
 }
