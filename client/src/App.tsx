@@ -8,6 +8,8 @@ import Game from './pages/Game';
 import Room from './pages/Room';
 import SpyLoading from './pages/SpyLoading';
 import GameLoading from './pages/GameLoading';
+import WordResult from './pages/WordResult';
+import VoteResult from './pages/VoteResult';
 import Word from './pages/Word';
 import { colors } from './components/game/Canvas';
 
@@ -40,6 +42,12 @@ const App: React.FC = () => {
       break;
     case 'game-loading':
       Page = GameLoading;
+      break;
+    case 'word-result':
+      Page = WordResult;
+      break;
+    case 'vote-result':
+      Page = VoteResult;
       break;
     default:
       throw new Error('존재하지 않는 페이지');

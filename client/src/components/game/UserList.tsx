@@ -27,9 +27,9 @@ const UserList: React.FC<Props> = ({
 
   return (
     <ul
-      className={`user-list ${status === 'voting' && 'voting'} ${
-        selected && 'voted'
-      }`}
+      className={`user-list ${
+        (status === 'voting' || status === 'answering') && 'voting'
+      } ${(selected || status === 'answering') && 'voted'}`}
     >
       {users.map((user, i) => (
         <UserListItem
@@ -38,9 +38,10 @@ const UserList: React.FC<Props> = ({
           turn={i}
           active={
             (status === 'drawing' && turn === i) ||
-            (status === 'voting' && selected === user.name)
+            ((status === 'voting' || status === 'answering') &&
+              selected === user.name)
           }
-          isVoting={status === 'voting'}
+          isVoting={status === 'voting' || status === 'answering'}
           onSelect={handleSelect(user.name)}
         />
       ))}

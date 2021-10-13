@@ -35,3 +35,16 @@
   justify-content: space-between;
   margin-right: 20px;
 }
+
+.game .left .bottom .spy-box {
+  margin-bottom: 10px;
+}
+
+.game .left .bottom .spy-box .text-field {
+  margin-bottom: 5px;
+}
+
+.game .left .bottom .spy-box .text-field input {
+  border: 2px solid var(--highlight);
+  color: var(--highlight);
+}

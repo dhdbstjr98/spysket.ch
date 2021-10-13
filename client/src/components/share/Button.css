@@ -30,7 +30,6 @@
 }
 
 .button:disabled {
-  background-color: var(--disabled);
-  color: var(--secondary);
+  opacity: 0.3;
   cursor: default;
 }

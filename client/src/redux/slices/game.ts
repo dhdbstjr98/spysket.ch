@@ -9,7 +9,13 @@ export interface User {
 
 export type Turn = 0 | 1 | 2 | 3 | 4;
 
-export type Status = 'waiting' | 'loading' | 'drawing' | 'voting';
+export type Status =
+  | 'waiting'
+  | 'loading'
+  | 'drawing'
+  | 'voting'
+  | 'answering'
+  | 'ending';
 
 interface GameState {
   id: string;
@@ -24,6 +30,8 @@ interface GameState {
   word?: string;
   isSpy?: boolean;
   turn?: Turn;
+  votedUser?: string;
+  spyWord?: string;
 }
 
 const gameSlice = createSlice({
@@ -115,6 +123,20 @@ const gameSlice = createSlice({
         );
       }
     },
+    setSpyWord: (
+      state,
+      action: PayloadAction<{ word: string; spyWord: string }>,
+    ) => {
+      if (state) {
+        state.word = action.payload.word;
+        state.spyWord = action.payload.spyWord;
+      }
+    },
+    endWithVoting: (state, action: PayloadAction<string>) => {
+      if (state) {
+        state.votedUser = action.payload;
+      }
+    },
   },
 });
 
@@ -132,5 +154,7 @@ export const {
   setTurn,
   setStatus,
   setVotedCount,
+  setSpyWord,
+  endWithVoting,
 } = actions;
 export default reducer;

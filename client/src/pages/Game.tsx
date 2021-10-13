@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import ProgressBar from '../components/share/ProgressBar';
@@ -9,10 +9,20 @@ import Canvas from '../components/game/Canvas';
 
 import './Game.css';
 import Button from '../components/share/Button';
-import { clearGame, setVotedCount } from '../redux/slices/game';
+import {
+  clearGame,
+  endWithVoting,
+  setSpyWord,
+  setStatus,
+  setTurn,
+  setVotedCount,
+  Turn,
+} from '../redux/slices/game';
+import TextField from '../components/share/TextField';
 
 const Game: React.FC = () => {
   const game = useSelector((state: RootState) => state.game);
+  const [answer, setAnswer] = useState<string>('');
   const dispatch = useAppDispatch();
 
   // typescript null escape
@@ -38,6 +48,46 @@ const Game: React.FC = () => {
     dispatch(setVotedCount({ name, votedCount: 1 }));
   };
 
+  const handleAnswer = () => {
+    dispatch(setSpyWord({ word: answer, spyWord: answer }));
+  };
+
+  useEffect(() => {
+    if (turn < 4) {
+      const timeout = setTimeout(() => {
+        dispatch(setTurn((turn + 1) as Turn));
+      }, 20000);
+
+      return () => clearTimeout(timeout);
+    } else {
+      const timeout = setTimeout(() => {
+        dispatch(setStatus('voting'));
+      }, 20000);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [turn]);
+
+  useEffect(() => {
+    if (status === 'answering') {
+      toast.info('스파이가 제시어를 맞추는 중입니다.');
+      // 원래는 answering으로 들어가면 word-result여야 하지만
+      // mock을 위해 vote-result로 전환
+      const timeout = setTimeout(() => {
+        dispatch(endWithVoting('홍길동'));
+      }, 20000);
+
+      return () => clearTimeout(timeout);
+    } else if (status === 'voting') {
+      const timeout = setTimeout(() => {
+        dispatch(setStatus('answering'));
+      }, 20000);
+
+      return () => clearTimeout(timeout);
+    }
+    return () => {};
+  }, [status]);
+
   return (
     <div className="game">
       <ProgressBar time={20} uniqueKey={turn + status} />
@@ -53,9 +103,23 @@ const Game: React.FC = () => {
             status={status}
             onSelect={handleSelect}
           />
-          <Button color="secondary" onClick={handleExit}>
-            나가기
-          </Button>
+          <div className="bottom">
+            {isSpy && status === 'answering' && (
+              <div className="spy-box">
+                <TextField text={answer} setText={setAnswer} />
+                <Button
+                  color="highlight"
+                  onClick={handleAnswer}
+                  disabled={answer === ''}
+                >
+                  제시어 맞추기!
+                </Button>
+              </div>
+            )}
+            <Button color="secondary" onClick={handleExit}>
+              나가기
+            </Button>
+          </div>
         </div>
         <Canvas />
       </div>

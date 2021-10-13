@@ -6,6 +6,8 @@ import {
   setWords,
   setWord,
   setUsers,
+  setSpyWord,
+  endWithVoting,
 } from './game';
 
 interface LayoutState {
@@ -13,7 +15,15 @@ interface LayoutState {
     width: number;
     height: number;
   };
-  page: 'lobby' | 'room' | 'game' | 'spy-loading' | 'word' | 'game-loading';
+  page:
+    | 'lobby'
+    | 'room'
+    | 'game'
+    | 'spy-loading'
+    | 'word'
+    | 'game-loading'
+    | 'vote-result'
+    | 'word-result';
   showContent: boolean;
 }
 
@@ -78,6 +88,20 @@ const layoutSlice = createSlice({
       state.size = {
         width: 1000,
         height: 700,
+      };
+    });
+    builder.addCase(setSpyWord, (state) => {
+      state.page = 'word-result';
+      state.size = {
+        width: 400,
+        height: 191,
+      };
+    });
+    builder.addCase(endWithVoting, (state) => {
+      state.page = 'vote-result';
+      state.size = {
+        width: 400,
+        height: 184,
       };
     });
   },

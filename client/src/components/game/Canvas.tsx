@@ -1,14 +1,12 @@
 import React, { useEffect } from 'react';
 import { FabricJSCanvas, useFabricJSEditor } from 'fabricjs-react';
 import { useSelector } from 'react-redux';
-import { RootState, useAppDispatch } from '../../redux/store';
+import { RootState } from '../../redux/store';
 import './Canvas.css';
-import { setStatus, setTurn, Turn } from '../../redux/slices/game';
 
 export const colors = ['#f44336', '#689f38', '#a5d6a7', '#2196f3', '#673ab7'];
 
 const Canvas: React.FC = () => {
-  const dispatch = useAppDispatch();
   const game = useSelector((state: RootState) => state.game);
   const { editor, onReady } = useFabricJSEditor();
 
@@ -36,18 +34,6 @@ const Canvas: React.FC = () => {
       editor.canvas.isDrawingMode = isMyTurn;
     }
   }, [turn, editor]);
-
-  useEffect(() => {
-    if (turn < 4) {
-      setTimeout(() => {
-        dispatch(setTurn((turn + 1) as Turn));
-      }, 20000);
-    } else {
-      setTimeout(() => {
-        dispatch(setStatus('voting'));
-      }, 20000);
-    }
-  }, [turn]);
 
   return (
     <div className="canvas">

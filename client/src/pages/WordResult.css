@@ -1,0 +1,32 @@
+.word-result {
+  width: 100%;
+  height: 100%;
+  font-size: 24px;
+  color: var(--primary);
+  position: relative;
+  box-sizing: border-box;
+}
+
+.word-result strong {
+  font-weight: bold;
+  color: var(--secondary);
+}
+
+.word-result .result {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.word-result table {
+  margin: 0 auto;
+}
+
+.word-result table th {
+  padding-right: 10px;
+  text-align: left;
+}
+
+.word-result table td {
+  padding-left: 10px;
+  text-align: left;
+}
