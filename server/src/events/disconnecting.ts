@@ -1,18 +1,14 @@
 import { Socket } from 'socket.io';
 import { rooms } from '../store';
 import leaveRoom from '../emits/leaveRoom';
+import { socketToRoomInfo } from '../utils';
 
 export default (socket: Socket) => () => {
-  const roomNames = Array.from(socket.rooms).filter(
-    (room) => room !== socket.id,
-  );
-  if (roomNames.length > 0) {
-    const room = roomNames[0];
-    const user = rooms[room].users.filter(
-      (user) => user.socket === socket.id,
-    )[0];
+  const roomInfo = socketToRoomInfo(socket);
+  if (roomInfo) {
+    const { room, user, idx } = roomInfo;
     rooms[room].users = rooms[room].users.filter(
-      (user) => user.socket !== socket.id,
+      (_, userIdx) => userIdx !== idx,
     );
     socket.leave(room);
     if (rooms[room].users.length > 0) {
