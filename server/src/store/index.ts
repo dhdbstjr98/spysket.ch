@@ -4,6 +4,7 @@ export interface User {
   socket: string;
   name: string;
   point: number;
+  ready: boolean;
   isSpy?: boolean;
 }
 

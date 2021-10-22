@@ -16,6 +16,7 @@ export default (socket: Socket) =>
       socket: socket.id,
       name,
       point: 0,
+      ready: false,
     };
 
     if (isCreation) {
