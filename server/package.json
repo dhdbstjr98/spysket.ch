@@ -1,0 +1,12 @@
+{
+  "name": "spysket.ch",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "npx ts-node src/index.ts"
+  },
+  "dependencies": {
+    "socket.io": "^4.3.1"
+  }
+}
