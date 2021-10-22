@@ -1,6 +1,6 @@
 import { Socket } from 'socket.io';
 import { rooms } from '../store';
-import leaveRoom from '../emits/leaveRoom';
+import emitLeaveRoom from '../emits/leaveRoom';
 import { socketToRoomInfo } from '../utils';
 
 export default (socket: Socket) => () => {
@@ -12,7 +12,7 @@ export default (socket: Socket) => () => {
     );
     socket.leave(room);
     if (rooms[room].users.length > 0) {
-      leaveRoom(socket, room, user);
+      emitLeaveRoom(socket, room, user);
     } else {
       delete rooms[room];
     }
