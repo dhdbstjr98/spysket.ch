@@ -4,6 +4,7 @@ import emitError from '../emits/error';
 import emitReady from '../emits/ready';
 import emitLoadGame from '../emits/loadGame';
 import emitSetWords from '../emits/setWords';
+import onSetWord from './setWord';
 import { shuffle, socketToRoomInfo } from '../utils';
 
 interface Props {
@@ -40,6 +41,8 @@ export default (socket: Socket) =>
             name: word,
             count: 0,
           }));
+
+          rooms[room].voteWordTimer = setTimeout(onSetWord(socket), 30000);
           emitSetWords(socket, room, wordsSelected);
         }, 3000);
       }

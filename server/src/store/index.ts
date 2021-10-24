@@ -26,6 +26,7 @@ export interface Room {
     count: number;
   }[];
   word?: string;
+  voteWordTimer?: NodeJS.Timeout;
 }
 
 export const rooms: {

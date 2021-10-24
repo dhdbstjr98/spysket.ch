@@ -2,7 +2,8 @@ import { Socket } from 'socket.io';
 import { rooms, words } from '../store';
 import emitError from '../emits/error';
 import emitSetWordCount from '../emits/setWordCount';
-import { shuffle, socketToRoomInfo } from '../utils';
+import onSetWord from './setWord';
+import { socketToRoomInfo } from '../utils';
 
 interface Props {
   word: string;
@@ -41,6 +42,18 @@ export default (socket: Socket) =>
           rooms[room].words?.filter((wordInfo) => wordInfo.name === word)[0]
             .count as number,
         );
+
+        if (
+          rooms[room].users.reduce(
+            (acc: number, cur) => acc + (cur.votedWord ? 1 : 0),
+            0,
+          ) ===
+          rooms[room].users.length - 1
+        ) {
+          if (rooms[room].voteWordTimer)
+            clearInterval(rooms[room].voteWordTimer as NodeJS.Timeout);
+          onSetWord(socket)();
+        }
       }
     }
   };
