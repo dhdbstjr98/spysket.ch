@@ -34,3 +34,7 @@ export const socketToRoomInfo = (socket: Socket): Returns | null => {
     idx,
   };
 };
+
+export const shuffle = <T>(arr: T[] | ReadonlyArray<T>): T[] => {
+  return (arr as T[]).sort(() => Math.random() - 0.5);
+};

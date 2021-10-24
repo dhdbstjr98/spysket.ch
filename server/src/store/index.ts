@@ -30,3 +30,5 @@ export interface Room {
 export const rooms: {
   [key: string]: Room;
 } = {};
+
+export { words } from './words';
