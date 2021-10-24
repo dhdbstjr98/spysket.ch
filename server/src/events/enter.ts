@@ -31,8 +31,7 @@ export default (socket: Socket) =>
         emitJoinRoom(socket, room, user);
         emitInitializeRoom(socket, rooms[room]);
         socket.join(room);
-        console.log(`[enter] 새로운 방 ${room} 생성`);
-        console.log(rooms);
+        console.log(`[enter] ${socket.id} 새로운 방 ${room} 생성`);
       }
     } else {
       if (!rooms[room]) {
@@ -48,7 +47,7 @@ export default (socket: Socket) =>
         emitJoinRoom(socket, room, user);
         emitInitializeRoom(socket, rooms[room]);
         socket.join(room);
-        console.log(`[enter] 방 ${room}에 접속`);
+        console.log(`[enter] ${socket.id} 방 ${room}에 접속`);
       }
     }
   };

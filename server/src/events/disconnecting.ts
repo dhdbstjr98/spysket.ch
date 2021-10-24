@@ -16,8 +16,8 @@ export default (socket: Socket) => () => {
     } else {
       delete rooms[room];
     }
-    console.log(`[disconnect] 방 ${room}에서 퇴장`);
+    console.log(`[disconnect] ${socket.id} 방 ${room}에서 퇴장`);
   } else {
-    console.log('[disconnect] 퇴장');
+    console.log(`[disconnect] ${socket.id} 퇴장`);
   }
 };
