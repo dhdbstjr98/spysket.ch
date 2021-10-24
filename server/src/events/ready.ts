@@ -36,6 +36,10 @@ export default (socket: Socket) =>
             ...user,
             isSpy: user.name === spy.name,
           }));
+          rooms[room].words = wordsSelected.map((word) => ({
+            name: word,
+            count: 0,
+          }));
           emitSetWords(socket, room, wordsSelected);
         }, 3000);
       }
