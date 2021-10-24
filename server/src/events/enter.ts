@@ -17,6 +17,7 @@ export default (socket: Socket) =>
       name,
       point: 0,
       ready: false,
+      votedWord: false,
     };
 
     if (isCreation) {
