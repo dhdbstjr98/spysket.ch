@@ -2,6 +2,7 @@ import { Socket } from 'socket.io';
 import { rooms, words } from '../store';
 import emitError from '../emits/error';
 import emitSetTurn from '../emits/setTurn';
+import onStartVotingSpy from './startVotingSpy';
 import { socketToRoomInfo } from '../utils';
 
 interface Props {
@@ -29,7 +30,7 @@ const onStartTurn =
             30000,
           );
         } else {
-          setTimeout(() => console.log('TODO: 투표'), 30000);
+          setTimeout(onStartVotingSpy(socket), 30000);
         }
       }
     }

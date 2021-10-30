@@ -7,6 +7,8 @@ export interface User {
   ready: boolean;
   isSpy?: boolean;
   votedWord?: boolean;
+  votedSpy?: boolean;
+  voted?: number;
 }
 
 export type Status =
@@ -27,6 +29,7 @@ export interface Room {
   }[];
   word?: string;
   voteWordTimer?: NodeJS.Timeout;
+  voteSpyTimer?: NodeJS.Timeout;
   turn?: 0 | 1 | 2 | 3 | 4;
 }
 
