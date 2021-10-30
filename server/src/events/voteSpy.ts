@@ -21,17 +21,22 @@ export default (socket: Socket) =>
       } else if (user.votedSpy) {
         emitError(socket, '이미 스파이를 투표했습니다.');
       } else {
-        rooms[room].users[spy].voted = rooms[room].users[spy].voted ?? 0 + 1;
+        const remain =
+          rooms[room].users.reduce(
+            (acc: number, cur) => acc + (cur.votedSpy ? 0 : 1),
+            0,
+          ) - 1;
+
         rooms[room].users[idx].votedSpy = true;
-        console.log(`[voteWord] ${socket.id} ${spy} 투표`);
+        rooms[room].users[spy].voted =
+          (rooms[room].users[spy].voted as number) +
+          1 +
+          remain * remain * 0.001;
         emitSetVotedCount(socket, room, rooms[room].users[spy]);
 
-        if (
-          rooms[room].users.reduce(
-            (acc: number, cur) => acc + (cur.votedSpy ? 1 : 0),
-            0,
-          ) === rooms[room].users.length
-        ) {
+        console.log(`[voteWord] ${socket.id} ${spy} 투표`);
+
+        if (remain === 0) {
           if (rooms[room].voteSpyTimer)
             clearInterval(rooms[room].voteSpyTimer as NodeJS.Timeout);
           onEndVoting(socket)();
