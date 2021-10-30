@@ -14,8 +14,10 @@ export default (socket: Socket) => () => {
       emitError(socket, '게임 상태가 올바르지 않습니다.');
     } else {
       rooms[room].users = shuffle(rooms[room].users);
+      rooms[room].status = 'drawing';
       emitSetUsers(socket, room, rooms[room].users);
       setTimeout(() => console.log('TODO: 턴 시작'), 3000);
+      console.log(`[startGame] 게임 시작`);
     }
   }
 };
