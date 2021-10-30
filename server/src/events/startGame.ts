@@ -2,6 +2,7 @@ import { Socket } from 'socket.io';
 import { rooms, words } from '../store';
 import emitError from '../emits/error';
 import emitSetUsers from '../emits/setUsers';
+import onStartTurn from './startTurn';
 import { shuffle, socketToRoomInfo } from '../utils';
 
 export default (socket: Socket) => () => {
@@ -16,8 +17,8 @@ export default (socket: Socket) => () => {
       rooms[room].users = shuffle(rooms[room].users);
       rooms[room].status = 'drawing';
       emitSetUsers(socket, room, rooms[room].users);
-      setTimeout(() => console.log('TODO: 턴 시작'), 3000);
       console.log(`[startGame] 게임 시작`);
+      setTimeout(() => onStartTurn(socket)({ turn: 0 }), 3000);
     }
   }
 };
