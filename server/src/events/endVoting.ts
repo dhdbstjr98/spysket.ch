@@ -12,6 +12,7 @@ export default (socket: Socket) => () => {
     if (rooms[room].status !== 'voting') {
       emitError(socket, '스파이 투표중이지 않습니다.');
     } else {
+      console.log('end voting');
       // TODO
     }
   }

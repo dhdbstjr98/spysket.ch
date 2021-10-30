@@ -22,7 +22,7 @@ export default (socket: Socket) => () => {
       }));
       emitSetStatusVotingSpy(socket, room);
       console.log('[startVotingSpy]');
-      rooms[room].voteSpyTimer = setTimeout(onEndVoting(socket), 3000);
+      rooms[room].voteSpyTimer = setTimeout(onEndVoting(socket), 30000);
     }
   }
 };
