@@ -17,6 +17,11 @@
   resolved "https://registry.yarnpkg.com/@types/cors/-/cors-2.8.12.tgz#6b2c510a7ad7039e98e7b8d3d6598f4359e5c080"
   integrity sha512-vt+kDhq/M2ayberEtJcIN/hxXy1Pk+59g2FV/ZQceeaTyCtCucjL2Q7FXlFjtWn4n15KCr1NE2lNNFhp0lEThw==
 
+"@types/fabric@^4.5.4":
+  version "4.5.4"
+  resolved "https://registry.yarnpkg.com/@types/fabric/-/fabric-4.5.4.tgz#2da26e492c5a369383c920224d66646433a6ea63"
+  integrity sha512-hu+VbP50FAtxy9e+ZBx+xwKclREtxg1hlFV3ID+YArLA9sfUG3QOGXT/862z0cq/DRWfyWOj8nPh5wRspaQUkg==
+
 "@types/node@>=10.0.0":
   version "16.11.3"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-16.11.3.tgz#fad0b069ec205b0e81429c805d306d2c12e26be1"

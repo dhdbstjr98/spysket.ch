@@ -3,6 +3,7 @@ import { Server, Socket } from 'socket.io';
 import onEnter from './events/enter';
 import onReady from './events/ready';
 import onVoteWord from './events/voteWord';
+import onDraw from './events/draw';
 import onDisconnecting from './events/disconnecting';
 
 const port = 3100;
@@ -17,6 +18,7 @@ io.on('connection', (socket: Socket) => {
   socket.on('enter', onEnter(socket));
   socket.on('ready', onReady(socket));
   socket.on('voteWord', onVoteWord(socket));
+  socket.on('draw', onDraw(socket));
   socket.on('disconnecting', onDisconnecting(socket));
 });
 
