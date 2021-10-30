@@ -9,6 +9,6 @@ export default (socket: Socket, room: string, users: User[]) => {
       ready: user.ready,
     })),
   };
-  socket.broadcast.to(room).emit('users', usersInfo);
-  socket.emit('users', usersInfo);
+  socket.broadcast.to(room).emit('setUsers', usersInfo);
+  socket.emit('setUsers', usersInfo);
 };
