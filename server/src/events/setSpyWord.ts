@@ -36,7 +36,7 @@ export default (socket: Socket) =>
         }
         emitSetSpyWord(socket, room, rooms[room].word as string, spyWord ?? '');
         console.log(`[endWithVoting] ${rooms[room].word} ${spyWord}`);
-        setTimeout(onLoadGame(socket), 3000);
+        setTimeout(onLoadGame(socket), 5000);
       }
     }
   };

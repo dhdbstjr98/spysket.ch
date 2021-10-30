@@ -26,7 +26,7 @@ export default (socket: Socket) =>
         }));
         emitEndWithVoting(socket, room, votedUser.name);
         console.log(`[endWithVoting] ${votedUser.name}`);
-        setTimeout(onLoadGame(socket), 3000);
+        setTimeout(onLoadGame(socket), 5000);
       }
     }
   };
