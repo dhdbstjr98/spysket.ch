@@ -30,6 +30,7 @@ export interface Room {
   word?: string;
   voteWordTimer?: NodeJS.Timeout;
   voteSpyTimer?: NodeJS.Timeout;
+  answeringTimer?: NodeJS.Timeout;
   turn?: 0 | 1 | 2 | 3 | 4;
 }
 

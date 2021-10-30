@@ -1,7 +1,7 @@
 import { Socket } from 'socket.io';
 import { rooms, words } from '../store';
 import emitError from '../emits/error';
-import emitSetStatusVotingSpy from '../emits/setStatusVotingSpy';
+import emitSetStatus from '../emits/setStatus';
 import onEndVoting from './endVoting';
 import { socketToRoomInfo } from '../utils';
 
@@ -20,7 +20,7 @@ export default (socket: Socket) => () => {
         votedSpy: false,
         voted: 0,
       }));
-      emitSetStatusVotingSpy(socket, room);
+      emitSetStatus(socket, room, 'voting');
       console.log('[startVotingSpy]');
       rooms[room].voteSpyTimer = setTimeout(onEndVoting(socket), 30000);
     }

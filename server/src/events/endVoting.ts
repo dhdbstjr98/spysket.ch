@@ -2,6 +2,7 @@ import { Socket } from 'socket.io';
 import { rooms, words } from '../store';
 import emitError from '../emits/error';
 import onEndWithVoting from './endWithVoting';
+import onStartAnswering from './startAnswering';
 import { shuffle, socketToRoomInfo } from '../utils';
 
 export default (socket: Socket) => () => {
@@ -21,7 +22,7 @@ export default (socket: Socket) => () => {
       console.log(`[endVoting] ${votedUser.name} ${votedUser.voted}`);
 
       if (votedUser.isSpy) {
-        console.log('TODO: 제시어 맞추기');
+        onStartAnswering(socket)();
       } else {
         onEndWithVoting(socket)({ votedUser: votedUser });
       }

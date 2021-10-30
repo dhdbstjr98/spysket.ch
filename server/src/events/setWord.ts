@@ -18,6 +18,7 @@ export default (socket: Socket) => () => {
         rooms[room].words as { name: string; count: number }[]
       ).sort((word1, word2) => word2.count - word1.count + Math.random())[0]
         .name;
+      rooms[room].word = word;
       emitSetWord(socket, room, word);
       console.log(`[setWord] ${word} 선정`);
       setTimeout(onStartGame(socket), 3000);
