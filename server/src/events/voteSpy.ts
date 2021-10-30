@@ -38,7 +38,7 @@ export default (socket: Socket) =>
 
         if (remain === 0) {
           if (rooms[room].voteSpyTimer)
-            clearInterval(rooms[room].voteSpyTimer as NodeJS.Timeout);
+            clearTimeout(rooms[room].voteSpyTimer as NodeJS.Timeout);
           onEndVoting(socket)();
         }
       }

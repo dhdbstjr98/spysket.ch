@@ -21,7 +21,7 @@ export default (socket: Socket) =>
       } else if (spyWord !== null && !user.isSpy) {
         emitError(socket, '스파이가 아닙니다.');
       } else {
-        clearInterval(rooms[room].answeringTimer as NodeJS.Timeout);
+        clearTimeout(rooms[room].answeringTimer as NodeJS.Timeout);
         rooms[room].status = 'ending';
         if (spyWord === rooms[room].word) {
           rooms[room].users = rooms[room].users.map((user) => ({

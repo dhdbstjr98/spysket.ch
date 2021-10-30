@@ -51,7 +51,7 @@ export default (socket: Socket) =>
           rooms[room].users.length - 1
         ) {
           if (rooms[room].voteWordTimer)
-            clearInterval(rooms[room].voteWordTimer as NodeJS.Timeout);
+            clearTimeout(rooms[room].voteWordTimer as NodeJS.Timeout);
           onSetWord(socket)();
         }
       }
