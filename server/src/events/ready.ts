@@ -36,6 +36,7 @@ export default (socket: Socket) =>
           rooms[room].users = rooms[room].users.map((user) => ({
             ...user,
             isSpy: user.name === spy.name,
+            votedWord: false,
           }));
           rooms[room].words = wordsSelected.map((word) => ({
             name: word,

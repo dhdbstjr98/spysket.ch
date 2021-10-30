@@ -6,7 +6,7 @@ export interface User {
   point: number;
   ready: boolean;
   isSpy?: boolean;
-  votedWord: boolean;
+  votedWord?: boolean;
 }
 
 export type Status =
