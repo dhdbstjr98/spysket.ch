@@ -2,7 +2,8 @@ import { Socket } from 'socket.io';
 import { rooms, words } from '../store';
 import emitError from '../emits/error';
 import emitSetWord from '../emits/setWord';
-import { shuffle, socketToRoomInfo } from '../utils';
+import onStartGame from './startGame';
+import { socketToRoomInfo } from '../utils';
 
 export default (socket: Socket) => () => {
   const roomInfo = socketToRoomInfo(socket);
@@ -19,9 +20,7 @@ export default (socket: Socket) => () => {
         .name;
       emitSetWord(socket, room, word);
       console.log(`[setWord] ${word} 선정`);
-      setTimeout(() => {
-        console.log('TODO: 게임 시작');
-      }, 3000);
+      setTimeout(onStartGame(socket), 3000);
     }
   }
 };
