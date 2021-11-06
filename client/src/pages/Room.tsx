@@ -1,28 +1,29 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { RootState, useAppDispatch } from '../redux/store';
+import { RootState } from '../redux/store';
 import UserList from '../components/room/UserList';
 import './Room.css';
 import Button from '../components/share/Button';
-import { loadGame } from '../redux/slices/game';
+import { User } from '../redux/slices/game';
 import { getSocket } from '../socket';
 
 const Game: React.FC = () => {
   const game = useSelector((state: RootState) => state.game);
-  const dispatch = useAppDispatch();
+
+  // typescript null escape
+  if (game === null) return <></>;
+
+  const { room, users, name } = game;
 
   const handleBack = () => {
     getSocket().emit('exitRoom', {});
   };
 
   const handleReady = () => {
-    dispatch(loadGame());
+    getSocket().emit('ready', {
+      ready: !(users.filter((user) => user.name === name)[0] as User).ready,
+    });
   };
-
-  // typescript null escape
-  if (game === null) return <></>;
-
-  const { room, users } = game;
 
   return (
     <div className="room">
