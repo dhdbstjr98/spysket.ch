@@ -6,7 +6,7 @@ import onVoteWord from './events/voteWord';
 import onDraw from './events/draw';
 import onVoteSpy from './events/voteSpy';
 import onSetSpyWord from './events/setSpyWord';
-import onDisconnecting from './events/disconnecting';
+import onExitRoom from './events/exitRoom';
 
 const port = 3100;
 const httpServer = createServer();
@@ -23,7 +23,8 @@ io.on('connection', (socket: Socket) => {
   socket.on('draw', onDraw(socket));
   socket.on('voteSpy', onVoteSpy(socket));
   socket.on('setSpyWord', onSetSpyWord(socket));
-  socket.on('disconnecting', onDisconnecting(socket));
+  socket.on('exitRoom', onExitRoom(socket));
+  socket.on('disconnecting', onExitRoom(socket));
 });
 
 httpServer.listen(port);

@@ -1,6 +1,8 @@
 import { io, Socket } from 'socket.io-client';
 import { AppDispatch } from '../redux/store';
 import initializeRoom from './events/initializeRoom';
+import leaveRoom from './events/leaveRoom';
+import joinRoom from './events/joinRoom';
 
 const socketManager = () => {
   let socket: Socket;
@@ -9,6 +11,8 @@ const socketManager = () => {
     socket = io(endpoint);
 
     socket.on('initializeRoom', initializeRoom(dispatch));
+    socket.on('leaveRoom', leaveRoom(dispatch));
+    socket.on('joinRoom', joinRoom(dispatch));
   };
 
   const getSocket = () => {

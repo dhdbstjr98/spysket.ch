@@ -43,6 +43,13 @@ const gameSlice = createSlice({
     clearGame: () => {
       return null;
     },
+    removeUser: (state, action: PayloadAction<{ name: string }>) => {
+      if (state) {
+        state.users = state?.users.filter(
+          (user) => user.name !== action.payload.name,
+        );
+      }
+    },
     setUser: (state, action: PayloadAction<User>) => {
       if (state) {
         let found = false;
@@ -144,6 +151,7 @@ const { actions, reducer } = gameSlice;
 export const {
   setGame,
   clearGame,
+  removeUser,
   setUser,
   loadGame,
   setWords,

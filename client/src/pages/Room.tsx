@@ -4,14 +4,15 @@ import { RootState, useAppDispatch } from '../redux/store';
 import UserList from '../components/room/UserList';
 import './Room.css';
 import Button from '../components/share/Button';
-import { clearGame, loadGame } from '../redux/slices/game';
+import { loadGame } from '../redux/slices/game';
+import { getSocket } from '../socket';
 
 const Game: React.FC = () => {
   const game = useSelector((state: RootState) => state.game);
   const dispatch = useAppDispatch();
 
   const handleBack = () => {
-    dispatch(clearGame());
+    getSocket().emit('exitRoom', {});
   };
 
   const handleReady = () => {
