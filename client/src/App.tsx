@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useSelector } from 'react-redux';
-import { RootState } from './redux/store';
+import { RootState, useAppDispatch } from './redux/store';
 import Lobby from './pages/Lobby';
 import Game from './pages/Game';
 import Room from './pages/Room';
@@ -12,6 +12,7 @@ import WordResult from './pages/WordResult';
 import VoteResult from './pages/VoteResult';
 import Word from './pages/Word';
 import { colors } from './components/game/Canvas';
+import { getSocket, initializeSocket } from './socket';
 
 const App: React.FC = () => {
   const {
@@ -20,7 +21,7 @@ const App: React.FC = () => {
     showContent,
   } = useSelector((state: RootState) => state.layout);
 
-  // const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
   let Page;
 
@@ -60,6 +61,11 @@ const App: React.FC = () => {
     }),
     {},
   );
+
+  useEffect(() => {
+    initializeSocket(dispatch, 'http://localhost:3100');
+    getSocket().on('disconnect', () => console.log('disconnected'));
+  }, []);
 
   // useEffect(() => {
   //   dispatch(

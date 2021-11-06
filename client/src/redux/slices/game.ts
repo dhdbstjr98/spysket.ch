@@ -18,7 +18,6 @@ export type Status =
   | 'ending';
 
 interface GameState {
-  id: string;
   room: string;
   name: string;
   users: User[];

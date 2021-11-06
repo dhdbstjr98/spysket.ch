@@ -29,7 +29,7 @@ export default (socket: Socket) =>
           status: 'waiting',
         };
         emitJoinRoom(socket, room, user);
-        emitInitializeRoom(socket, rooms[room]);
+        emitInitializeRoom(socket, rooms[room], user.name);
         socket.join(room);
         console.log(`[enter] ${socket.id} 새로운 방 ${room} 생성`);
       }
@@ -45,7 +45,7 @@ export default (socket: Socket) =>
       } else {
         rooms[room].users.push(user);
         emitJoinRoom(socket, room, user);
-        emitInitializeRoom(socket, rooms[room]);
+        emitInitializeRoom(socket, rooms[room], user.name);
         socket.join(room);
         console.log(`[enter] ${socket.id} 방 ${room}에 접속`);
       }

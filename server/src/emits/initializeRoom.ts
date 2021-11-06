@@ -1,7 +1,11 @@
 import { Socket } from 'socket.io';
 import { Room } from '../store';
 
-export default (socket: Socket, room: Room) => {
+export default function initializeRoom(
+  socket: Socket,
+  room: Room,
+  name: string,
+) {
   const roomForEmit = {
     ...room,
     users: room.users.map((user) => ({
@@ -11,6 +15,7 @@ export default (socket: Socket, room: Room) => {
     })),
   };
   socket.emit('initializeRoom', {
-    ...roomForEmit,
+    room: roomForEmit,
+    name: name,
   });
-};
+}

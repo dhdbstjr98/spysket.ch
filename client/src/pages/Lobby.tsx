@@ -1,29 +1,21 @@
 import React, { useState } from 'react';
 import TextField from '../components/share/TextField';
 import Button from '../components/share/Button';
-import { useAppDispatch } from '../redux/store';
-import { setGame } from '../redux/slices/game';
+import { getSocket } from '../socket';
 
 const Lobby: React.FC = () => {
   const [name, setName] = useState<string>('');
   const [room, setRoom] = useState<string>('');
 
-  const dispatch = useAppDispatch();
-  const makeRoom = () => {
-    dispatch(
-      setGame({
-        id: 'asdf',
-        name: '오윤석',
-        room: '테스트룸',
-        users: [
-          { name: '오윤석', ready: false },
-          { name: '홍길동', ready: true },
-          { name: '테스트', ready: false },
-        ],
-        status: 'waiting',
-      }),
-    );
+  const enterRoom = (isCreation: boolean) => {
+    getSocket().emit('enter', {
+      name,
+      room,
+      isCreation,
+    });
   };
+  const makeRoom = () => enterRoom(true);
+  const joinRoom = () => enterRoom(false);
 
   return (
     <div className="lobby">
@@ -43,7 +35,7 @@ const Lobby: React.FC = () => {
         방 만들기
       </Button>
       <Button
-        onClick={makeRoom}
+        onClick={joinRoom}
         color="primary"
         disabled={name === '' || room === ''}
       >
