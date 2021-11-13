@@ -4,14 +4,14 @@ import './Word.css';
 import ProgressBar from '../components/share/ProgressBar';
 import Vote from '../components/word/Vote';
 import { RootState, useAppDispatch } from '../redux/store';
-import { setWordCount, setWord } from '../redux/slices/game';
+import { setWord } from '../redux/slices/game';
+import { getSocket } from '../socket';
 
 const Game: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const handleSelect = (name: string) => {
-    console.log(name);
-    dispatch(setWordCount({ name, count: 3 }));
+    getSocket().emit('voteWord', { word: name });
   };
 
   useEffect(() => {

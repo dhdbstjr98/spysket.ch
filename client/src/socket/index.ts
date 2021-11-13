@@ -5,6 +5,8 @@ import leaveRoom from './events/leaveRoom';
 import joinRoom from './events/joinRoom';
 import ready from './events/ready';
 import loadGame from './events/loadGame';
+import setWords from './events/setWords';
+import setWordCount from './events/setWordCount';
 
 const socketManager = () => {
   let socket: Socket;
@@ -17,6 +19,8 @@ const socketManager = () => {
     socket.on('joinRoom', joinRoom(dispatch));
     socket.on('ready', ready(dispatch));
     socket.on('loadGame', loadGame(dispatch));
+    socket.on('setWords', setWords(dispatch));
+    socket.on('setWordCount', setWordCount(dispatch));
   };
 
   const getSocket = () => {
