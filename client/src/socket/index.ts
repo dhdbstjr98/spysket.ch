@@ -8,6 +8,7 @@ import loadGame from './events/loadGame';
 import setWords from './events/setWords';
 import setWordCount from './events/setWordCount';
 import setWord from './events/setWord';
+import setUsers from './events/setUsers';
 
 const socketManager = () => {
   let socket: Socket;
@@ -23,6 +24,7 @@ const socketManager = () => {
     socket.on('setWords', setWords(dispatch));
     socket.on('setWordCount', setWordCount(dispatch));
     socket.on('setWord', setWord(dispatch));
+    socket.on('setUsers', setUsers(dispatch));
   };
 
   const getSocket = () => {
