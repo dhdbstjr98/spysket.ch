@@ -14,9 +14,7 @@ import {
   endWithVoting,
   setSpyWord,
   setStatus,
-  setTurn,
   setVotedCount,
-  Turn,
 } from '../redux/slices/game';
 import TextField from '../components/share/TextField';
 import { getSocket } from '../socket';
@@ -54,19 +52,16 @@ const Game: React.FC = () => {
     dispatch(setSpyWord({ word: answer, spyWord: answer }));
   };
 
-  useEffect(() => {
-    if (turn < 4) {
-      const timeout = setTimeout(() => {
-        dispatch(setTurn((turn + 1) as Turn));
-      }, 20000);
 
-      return () => clearTimeout(timeout);
-    } else {
+  useEffect(() => {
+    if (turn === 4) {
       const timeout = setTimeout(() => {
         dispatch(setStatus('voting'));
       }, 20000);
 
       return () => clearTimeout(timeout);
+    } else {
+      return () => {};
     }
   }, [turn]);
 
