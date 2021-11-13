@@ -19,6 +19,7 @@ import {
   Turn,
 } from '../redux/slices/game';
 import TextField from '../components/share/TextField';
+import { getSocket } from '../socket';
 
 const Game: React.FC = () => {
   const game = useSelector((state: RootState) => state.game);
@@ -42,6 +43,7 @@ const Game: React.FC = () => {
 
   const handleExit = () => {
     dispatch(clearGame());
+    getSocket().emit('exitRoom', {});
   };
 
   const handleSelect = (name: string) => {
