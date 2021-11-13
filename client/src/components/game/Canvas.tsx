@@ -1,3 +1,4 @@
+import { fabric } from 'fabric';
 import React, { useEffect } from 'react';
 import { FabricJSCanvas, useFabricJSEditor } from 'fabricjs-react';
 import { useSelector } from 'react-redux';
@@ -6,7 +7,12 @@ import './Canvas.css';
 
 export const colors = ['#f44336', '#689f38', '#a5d6a7', '#2196f3', '#673ab7'];
 
-const Canvas: React.FC = () => {
+interface Props {
+  onDraw: (object: fabric.Path) => void;
+  lastFabricObject: fabric.Path;
+}
+
+const Canvas: React.FC<Props> = ({ onDraw, lastFabricObject }) => {
   const game = useSelector((state: RootState) => state.game);
   const { editor, onReady } = useFabricJSEditor();
 
@@ -19,13 +25,13 @@ const Canvas: React.FC = () => {
   const isMyTurn = status === 'drawing' && users[turn].name === name;
 
   useEffect(() => {
-    if (editor) {
-      // editor.canvas.setDimensions({
-      //   width: canvasWrapper.current.clientWidth,
-      //   height: canvasWrapper.current.clientHeight,
-      // });
-      editor.canvas.setDimensions({ width: 688, height: 565 });
-    }
+    editor?.canvas.setDimensions({ width: 688, height: 565 });
+    editor?.canvas.on('object:added', (evt) => {
+      if (isMyTurn) onDraw(evt.target as fabric.Path);
+    });
+    return () => {
+      editor?.canvas.off('object:added');
+    };
   }, [editor]);
 
   useEffect(() => {
@@ -34,6 +40,14 @@ const Canvas: React.FC = () => {
       editor.canvas.isDrawingMode = isMyTurn;
     }
   }, [turn, editor]);
+
+  useEffect(() => {
+    if (lastFabricObject) {
+      editor?.canvas.add(
+        new fabric.Path(lastFabricObject.path, lastFabricObject),
+      );
+    }
+  }, [lastFabricObject]);
 
   return (
     <div className="canvas">

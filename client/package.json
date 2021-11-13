@@ -49,7 +49,7 @@
     ]
   },
   "devDependencies": {
-    "@types/fabric": "^4.5.3",
+    "@types/fabric": "^4.5.4",
     "@typescript-eslint/eslint-plugin": "^4.32.0",
     "@typescript-eslint/parser": "^4.32.0",
     "eslint": "^7.32.0",

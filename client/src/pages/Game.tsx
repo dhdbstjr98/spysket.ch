@@ -31,6 +31,10 @@ const Game: React.FC = () => {
 
   const { room, word, users, turn, isSpy, status } = game;
 
+  const lastFabricObject = useSelector(
+    (state: RootState) => state.game?.lastFabricObject,
+  ) as fabric.Path;
+
   useEffect(() => {
     if (status === 'voting') toast.info('누가 스파이인지 투표해주세요!');
   }, [status]);
@@ -52,6 +56,9 @@ const Game: React.FC = () => {
     dispatch(setSpyWord({ word: answer, spyWord: answer }));
   };
 
+  const handleDraw = (object: fabric.Path) => {
+    getSocket().emit('draw', { object });
+  };
 
   useEffect(() => {
     if (turn === 4) {
@@ -118,7 +125,7 @@ const Game: React.FC = () => {
             </Button>
           </div>
         </div>
-        <Canvas />
+        <Canvas onDraw={handleDraw} lastFabricObject={lastFabricObject} />
       </div>
     </div>
   );

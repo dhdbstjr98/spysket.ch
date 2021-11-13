@@ -31,6 +31,8 @@ interface GameState {
   turn?: Turn;
   votedUser?: string;
   spyWord?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  lastFabricObject?: fabric.Path | { [key: string]: any }; // redux 오류
 }
 
 const gameSlice = createSlice({
@@ -143,6 +145,11 @@ const gameSlice = createSlice({
         state.votedUser = action.payload;
       }
     },
+    setLastFabricObject: (state, action: PayloadAction<fabric.Object>) => {
+      if (state) {
+        state.lastFabricObject = action.payload;
+      }
+    },
   },
 });
 
@@ -163,5 +170,6 @@ export const {
   setVotedCount,
   setSpyWord,
   endWithVoting,
+  setLastFabricObject,
 } = actions;
 export default reducer;
