@@ -18,7 +18,7 @@ export default (socket: Socket) => () => {
       rooms[room].status = 'drawing';
       emitSetUsers(socket, room, rooms[room].users);
       console.log(`[startGame] 게임 시작`);
-      setTimeout(() => onStartTurn(socket)({ turn: 0 }), 3000);
+      onStartTurn(socket)({ turn: 0 });
     }
   }
 };
