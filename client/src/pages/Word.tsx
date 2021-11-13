@@ -1,24 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import './Word.css';
 import ProgressBar from '../components/share/ProgressBar';
 import Vote from '../components/word/Vote';
-import { RootState, useAppDispatch } from '../redux/store';
-import { setWord } from '../redux/slices/game';
+import { RootState } from '../redux/store';
 import { getSocket } from '../socket';
 
 const Game: React.FC = () => {
-  const dispatch = useAppDispatch();
-
   const handleSelect = (name: string) => {
     getSocket().emit('voteWord', { word: name });
   };
-
-  useEffect(() => {
-    setTimeout(() => {
-      dispatch(setWord('경희대'));
-    }, 10000);
-  }, []);
 
   const isSpy = useSelector((state: RootState) => state.game?.isSpy);
   const words = useSelector((state: RootState) => state.game?.words);
