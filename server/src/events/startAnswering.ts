@@ -19,7 +19,7 @@ export default (socket: Socket) => () => {
       console.log('[startAnswering]');
       rooms[room].answeringTimer = setTimeout(
         () => onSetSpyWord(socket)({ spyWord: null }),
-        30000,
+        20000,
       );
     }
   }

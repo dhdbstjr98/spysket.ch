@@ -32,7 +32,7 @@ export default (socket: Socket) => () => {
         count: 0,
       }));
 
-      rooms[room].voteWordTimer = setTimeout(onSetWord(socket), 30000);
+      rooms[room].voteWordTimer = setTimeout(onSetWord(socket), 10000);
       emitSetWords(socket, room, wordsSelected);
     }, 3000);
   }

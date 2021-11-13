@@ -27,10 +27,10 @@ const onStartTurn =
           setTimeout(
             () =>
               onStartTurn(socket)({ turn: (turn + 1) as 0 | 1 | 2 | 3 | 4 }),
-            30000,
+            20000,
           );
         } else {
-          setTimeout(onStartVotingSpy(socket), 30000);
+          setTimeout(onStartVotingSpy(socket), 20000);
         }
       }
     }
