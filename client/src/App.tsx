@@ -14,6 +14,11 @@ import Word from './pages/Word';
 import { colors } from './components/game/Canvas';
 import { getSocket, initializeSocket } from './socket';
 
+const isDev = document.location.origin === 'http://localhost:3000';
+const socketServer = isDev
+  ? 'http://localhost:3100'
+  : 'https://socket.spysket.ch';
+
 const App: React.FC = () => {
   const {
     size: { width, height },
@@ -63,7 +68,7 @@ const App: React.FC = () => {
   );
 
   useEffect(() => {
-    initializeSocket(dispatch, 'http://localhost:3100');
+    initializeSocket(dispatch, socketServer);
     getSocket().on('disconnect', () => console.log('disconnected'));
   }, []);
 
