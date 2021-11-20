@@ -11,6 +11,7 @@ import setWord from './events/setWord';
 import setUsers from './events/setUsers';
 import setTurn from './events/setTurn';
 import drawObject from './events/drawObject';
+import setStatus from './events/setStatus';
 
 const socketManager = () => {
   let socket: Socket;
@@ -29,6 +30,7 @@ const socketManager = () => {
     socket.on('setUsers', setUsers(dispatch));
     socket.on('setTurn', setTurn(dispatch));
     socket.on('drawObject', drawObject(dispatch));
+    socket.on('setStatus', setStatus(dispatch));
   };
 
   const getSocket = () => {

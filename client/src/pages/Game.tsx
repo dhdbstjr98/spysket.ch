@@ -61,18 +61,6 @@ const Game: React.FC = () => {
   };
 
   useEffect(() => {
-    if (turn === 4) {
-      const timeout = setTimeout(() => {
-        dispatch(setStatus('voting'));
-      }, 20000);
-
-      return () => clearTimeout(timeout);
-    } else {
-      return () => {};
-    }
-  }, [turn]);
-
-  useEffect(() => {
     if (status === 'answering') {
       toast.info('스파이가 제시어를 맞추는 중입니다.');
       // 원래는 answering으로 들어가면 word-result여야 하지만
