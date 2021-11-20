@@ -14,7 +14,6 @@ import {
   endWithVoting,
   setSpyWord,
   setStatus,
-  setVotedCount,
 } from '../redux/slices/game';
 import TextField from '../components/share/TextField';
 import { getSocket } from '../socket';
@@ -49,7 +48,7 @@ const Game: React.FC = () => {
   };
 
   const handleSelect = (name: string) => {
-    dispatch(setVotedCount({ name, votedCount: 1 }));
+    getSocket().emit('voteSpy', { name });
   };
 
   const handleAnswer = () => {

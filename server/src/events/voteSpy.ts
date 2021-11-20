@@ -6,11 +6,11 @@ import onEndVoting from './endVoting';
 import { socketToRoomInfo } from '../utils';
 
 interface Props {
-  spy: 0 | 1 | 2 | 3 | 4;
+  name: string;
 }
 
 export default (socket: Socket) =>
-  ({ spy }: Props) => {
+  ({ name }: Props) => {
     const roomInfo = socketToRoomInfo(socket);
     if (!roomInfo) {
       emitError(socket, '서버에 접속중이지 않습니다.');
@@ -21,6 +21,7 @@ export default (socket: Socket) =>
       } else if (user.votedSpy) {
         emitError(socket, '이미 스파이를 투표했습니다.');
       } else {
+        const spy = rooms[room].users.findIndex((user) => user.name === name);
         const remain =
           rooms[room].users.reduce(
             (acc: number, cur) => acc + (cur.votedSpy ? 0 : 1),

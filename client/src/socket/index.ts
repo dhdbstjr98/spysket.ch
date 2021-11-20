@@ -12,6 +12,7 @@ import setUsers from './events/setUsers';
 import setTurn from './events/setTurn';
 import drawObject from './events/drawObject';
 import setStatus from './events/setStatus';
+import setVotedCount from './events/setVotedCount';
 
 const socketManager = () => {
   let socket: Socket;
@@ -31,6 +32,7 @@ const socketManager = () => {
     socket.on('setTurn', setTurn(dispatch));
     socket.on('drawObject', drawObject(dispatch));
     socket.on('setStatus', setStatus(dispatch));
+    socket.on('setVotedCount', setVotedCount(dispatch));
   };
 
   const getSocket = () => {
