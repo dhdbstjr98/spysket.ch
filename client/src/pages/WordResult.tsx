@@ -1,12 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import './WordResult.css';
 import ProgressBar from '../components/share/ProgressBar';
-import { RootState, useAppDispatch } from '../redux/store';
-import { loadGame } from '../redux/slices/game';
+import { RootState } from '../redux/store';
 
 const VoteResult: React.FC = () => {
-  const dispatch = useAppDispatch();
   const game = useSelector((state: RootState) => state.game);
 
   // typescript null escape
@@ -14,12 +12,6 @@ const VoteResult: React.FC = () => {
   if (!game || !game.word) return <></>;
 
   const { word, spyWord } = game;
-
-  useEffect(() => {
-    setTimeout(() => {
-      dispatch(loadGame());
-    }, 5000);
-  }, []);
 
   return (
     <div className="word-result">

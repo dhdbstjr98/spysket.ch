@@ -3,20 +3,18 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import ProgressBar from '../components/share/ProgressBar';
-import { RootState, useAppDispatch } from '../redux/store';
+import { RootState } from '../redux/store';
 import UserList from '../components/game/UserList';
 import Canvas from '../components/game/Canvas';
 
 import './Game.css';
 import Button from '../components/share/Button';
-import { clearGame } from '../redux/slices/game';
 import TextField from '../components/share/TextField';
 import { getSocket } from '../socket';
 
 const Game: React.FC = () => {
   const game = useSelector((state: RootState) => state.game);
   const [answer, setAnswer] = useState<string>('');
-  const dispatch = useAppDispatch();
 
   // typescript null escape
   // todo: 정말 안좋은 방법인 듯
@@ -40,7 +38,6 @@ const Game: React.FC = () => {
   }, [turn]);
 
   const handleExit = () => {
-    dispatch(clearGame());
     getSocket().emit('exitRoom', {});
   };
 
