@@ -9,12 +9,7 @@ import Canvas from '../components/game/Canvas';
 
 import './Game.css';
 import Button from '../components/share/Button';
-import {
-  clearGame,
-  endWithVoting,
-  setSpyWord,
-  setStatus,
-} from '../redux/slices/game';
+import { clearGame, endWithVoting, setStatus } from '../redux/slices/game';
 import TextField from '../components/share/TextField';
 import { getSocket } from '../socket';
 
@@ -52,7 +47,7 @@ const Game: React.FC = () => {
   };
 
   const handleAnswer = () => {
-    dispatch(setSpyWord({ word: answer, spyWord: answer }));
+    getSocket().emit('setSpyWord', { spyWord: answer });
   };
 
   const handleDraw = (object: fabric.Path) => {

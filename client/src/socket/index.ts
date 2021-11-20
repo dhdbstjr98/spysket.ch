@@ -13,6 +13,7 @@ import setTurn from './events/setTurn';
 import drawObject from './events/drawObject';
 import setStatus from './events/setStatus';
 import setVotedCount from './events/setVotedCount';
+import setSpyWord from './events/setSpyWord';
 
 const socketManager = () => {
   let socket: Socket;
@@ -33,6 +34,7 @@ const socketManager = () => {
     socket.on('drawObject', drawObject(dispatch));
     socket.on('setStatus', setStatus(dispatch));
     socket.on('setVotedCount', setVotedCount(dispatch));
+    socket.on('setSpyWord', setSpyWord(dispatch));
   };
 
   const getSocket = () => {
