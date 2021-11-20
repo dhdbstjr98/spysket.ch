@@ -11,7 +11,7 @@ const VoteResult: React.FC = () => {
 
   // typescript null escape
   // todo: 정말 안좋은 방법인 듯
-  if (!game || !game.word || !game.spyWord) return <></>;
+  if (!game || !game.word) return <></>;
 
   const { word, spyWord } = game;
 
