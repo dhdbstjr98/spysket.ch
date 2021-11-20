@@ -9,7 +9,7 @@ import Canvas from '../components/game/Canvas';
 
 import './Game.css';
 import Button from '../components/share/Button';
-import { clearGame, endWithVoting, setStatus } from '../redux/slices/game';
+import { clearGame } from '../redux/slices/game';
 import TextField from '../components/share/TextField';
 import { getSocket } from '../socket';
 
@@ -31,6 +31,8 @@ const Game: React.FC = () => {
 
   useEffect(() => {
     if (status === 'voting') toast.info('누가 스파이인지 투표해주세요!');
+    else if (status === 'answering')
+      toast.info('스파이가 제시어를 맞추는 중입니다.');
   }, [status]);
 
   useEffect(() => {
@@ -53,26 +55,6 @@ const Game: React.FC = () => {
   const handleDraw = (object: fabric.Path) => {
     getSocket().emit('draw', { object });
   };
-
-  useEffect(() => {
-    if (status === 'answering') {
-      toast.info('스파이가 제시어를 맞추는 중입니다.');
-      // 원래는 answering으로 들어가면 word-result여야 하지만
-      // mock을 위해 vote-result로 전환
-      const timeout = setTimeout(() => {
-        dispatch(endWithVoting('홍길동'));
-      }, 20000);
-
-      return () => clearTimeout(timeout);
-    } else if (status === 'voting') {
-      const timeout = setTimeout(() => {
-        dispatch(setStatus('answering'));
-      }, 20000);
-
-      return () => clearTimeout(timeout);
-    }
-    return () => {};
-  }, [status]);
 
   return (
     <div className="game">

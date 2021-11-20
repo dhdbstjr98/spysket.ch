@@ -14,6 +14,7 @@ import drawObject from './events/drawObject';
 import setStatus from './events/setStatus';
 import setVotedCount from './events/setVotedCount';
 import setSpyWord from './events/setSpyWord';
+import endWithVoting from './events/endWithVoting';
 
 const socketManager = () => {
   let socket: Socket;
@@ -35,6 +36,7 @@ const socketManager = () => {
     socket.on('setStatus', setStatus(dispatch));
     socket.on('setVotedCount', setVotedCount(dispatch));
     socket.on('setSpyWord', setSpyWord(dispatch));
+    socket.on('endWithVoting', endWithVoting(dispatch));
   };
 
   const getSocket = () => {
