@@ -15,6 +15,7 @@ import setStatus from './events/setStatus';
 import setVotedCount from './events/setVotedCount';
 import setSpyWord from './events/setSpyWord';
 import endWithVoting from './events/endWithVoting';
+import error from './events/error';
 
 const socketManager = () => {
   let socket: Socket;
@@ -22,6 +23,7 @@ const socketManager = () => {
   const initializeSocket = (dispatch: AppDispatch, endpoint: string) => {
     socket = io(endpoint);
 
+    socket.on('error', error);
     socket.on('initializeRoom', initializeRoom(dispatch));
     socket.on('leaveRoom', leaveRoom(dispatch));
     socket.on('joinRoom', joinRoom(dispatch));
